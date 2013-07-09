@@ -1063,7 +1063,7 @@ public class Game {
 			}
 
 			if ((!f1))
-				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new dropwalls(), 1L)_;
+				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new dropwalls(), 1L));
 		}
 	}
 
