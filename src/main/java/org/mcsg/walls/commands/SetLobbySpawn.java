@@ -26,6 +26,6 @@ public class SetLobbySpawn implements SubCommand {
 
 	@Override
 	public String permission() {
-		return "sg.admin.setlobby";
+		return "walls.admin.setlobby";
 	}
 }

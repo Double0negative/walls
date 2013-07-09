@@ -54,6 +54,6 @@ public class DelArena implements SubCommand{
 
 	@Override
 	public String permission() {
-		return "sg.admin.deletearena";
+		return "walls.admin.deletearena";
 	}   
 }

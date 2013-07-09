@@ -13,7 +13,7 @@ public class SetLobbyWall implements SubCommand{
     public boolean onCommand(Player player, String[] args) {
     	//player.sendMessage(ChatColor.RED+"This command has been replaced by /sg addwall <arenaid>");
     	return true;/*
-        if(!player.hasPermission("sg.admin.setlobby") && !player.isOp()){
+        if(!player.hasPermission("walls.admin.setlobby") && !player.isOp()){
             player.sendMessage(ChatColor.RED+"No Permission");
             return true;
         }
@@ -32,7 +32,7 @@ public class SetLobbyWall implements SubCommand{
 
 	@Override
 	public String permission() {
-		return "sg.admin.setlobby";
+		return "walls.admin.setlobby";
 	}
 
     //TODO: TAKE A W.E SELECTIONA AND SET THE LOBBY. ALSO SET LOBBY WALL

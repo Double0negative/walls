@@ -26,6 +26,6 @@ public class CreateArena implements SubCommand{
 
 	@Override
 	public String permission() {
-		return "sg.admin.createarena";
+		return "walls.admin.createarena";
 	}
 }

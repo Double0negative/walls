@@ -30,7 +30,7 @@ public class AddLobbyWall implements SubCommand{
 
 	@Override
 	public String permission() {
-		return "sg.admin.addwall";
+		return "walls.admin.addwall";
 	}
 
     //TODO: TAKE A W.E SELECTIONA AND SET THE LOBBY. ALSO SET LOBBY WALL

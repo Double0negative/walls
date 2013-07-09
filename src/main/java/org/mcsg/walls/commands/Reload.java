@@ -65,7 +65,7 @@ public class Reload implements SubCommand{
 
 	@Override
 	public String permission() {
-		return "sg.admin.reload";
+		return "walls.admin.reload";
 	}
 
 }

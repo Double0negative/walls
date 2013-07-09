@@ -34,6 +34,6 @@ public class ResetSpawns implements SubCommand{
 
 	@Override
 	public String permission() {
-		return "sg.admin.resetspawns";
+		return "walls.admin.resetspawns";
 	}
 }

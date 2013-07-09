@@ -77,6 +77,6 @@ public class SetSpawn implements SubCommand{
 
 	@Override
 	public String permission() {
-		return "sg.admin.setarenaspawns";
+		return "walls.admin.setarenaspawns";
 	}
 }

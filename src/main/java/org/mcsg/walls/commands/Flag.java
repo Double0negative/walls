@@ -49,6 +49,6 @@ public class Flag implements SubCommand {
 
 	@Override
 	public String permission() {
-		return "sg.admin.flag";
+		return "walls.admin.flag";
 	}
 }
