@@ -455,13 +455,6 @@ public class Game {
 				//clearInv(pl);
 				msgmgr.sendFMessage(PrefixType.INFO, "game.goodluck", pl);
 			}
-			if (config.getBoolean("restock-chest")) {
-				SettingsManager.getGameWorld(gameID).setTime(0);
-				gcount++;
-				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(),
-						new NightChecker(),
-						14400));
-			}
 			if (config.getInt("grace-period") != 0) {
 				for (Player play: activePlayers) {
 					msgmgr.sendMessage(PrefixType.INFO, "You have a " + config.getInt("grace-period") + " second grace period!", play);
@@ -474,10 +467,9 @@ public class Game {
 					}
 				}, config.getInt("grace-period") * 20);
 			}
-			if(config.getBoolean("deathmatch.enabled")){
-				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), 
-						new DeathMatch(), config.getInt("deathmatch.time") * 20 * 60));
-			}
+			wallstime = SettingsManager.getInstance().getConfig().getInt("time-before-drop");
+
+			tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new checkwalls(), 1200L));
 		}
 
 		mode = GameMode.INGAME;
@@ -1040,12 +1032,12 @@ public class Game {
 			if (wallstime > 1) {
 				wallstime -= 1;
 				msgFall(PrefixType.INFO, ChatColor.AQUA +""+ wallstime + " minutes before the walls drop!");
-				dropwallstid = Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new checkwalls(), 1200L);
+				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new checkwalls(), 1200L));
 			}
 			else {
 				wallstime--;
 				msgFall(PrefixType.INFO, ChatColor.AQUA + "The walls are falling!");
-				Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new Game.dropwalls(), 1L);
+				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new Game.dropwalls(), 1L));
 			}
 		}
 	}
@@ -1071,7 +1063,7 @@ public class Game {
 			}
 
 			if ((!f1))
-				Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new dropwalls(), 1L);
+				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new dropwalls(), 1L)_;
 		}
 	}
 
