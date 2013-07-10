@@ -66,14 +66,14 @@ public class SettingsManager {
 		f2 = new File(p.getDataFolder(), "system.yml");
 		f3 = new File(p.getDataFolder(), "kits.yml");
 		f4 = new File(p.getDataFolder(), "messages.yml");
-		f5 = new File(p.getDataFolder(), "chest.yml");
+		//f5 = new File(p.getDataFolder(), "chest.yml");
 
 		try {
 			if (!f.exists()) 	f.createNewFile();
 			if (!f2.exists())	f2.createNewFile();
 			if (!f3.exists()) 	loadFile("kits.yml");
 			if (!f4.exists()) 	loadFile("messages.yml");
-			if (!f5.exists()) 	loadFile("chest.yml");
+		//	if (!f5.exists()) 	loadFile("chest.yml");
 
 		} 
 		catch (Exception e) {

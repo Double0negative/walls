@@ -43,7 +43,7 @@ public class GameManager {
 	public void setup(Walls plugin) {
 		p = plugin;
 		LoadGames();
-		//LoadKits();
+		LoadKits();
 		for (Game g: getGames()) {
 			openedChest.put(g.getID(), new HashSet < Block > ());
 		}
