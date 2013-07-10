@@ -26,14 +26,12 @@ public class SettingsManager {
 	private FileConfiguration system;
 	private FileConfiguration kits;
 	private FileConfiguration messages;
-	private FileConfiguration chest;
 
 
 	private File f; //spawns
 	private File f2; //system
 	private File f3; //kits
 	private File f4; //messages
-	private File f5; //chest
 	
 	private static final int KIT_VERSION = 1;
 	private static final int MESSAGE_VERSION = 1;
@@ -88,8 +86,7 @@ public class SettingsManager {
 		
 		reloadKits();
 		//saveKits();
-		
-		reloadChest();
+
 		
 		reloadMessages();
 		saveMessages();
@@ -117,9 +114,7 @@ public class SettingsManager {
 		return kits;
 	}
 	
-	public FileConfiguration getChest() {
-		return chest;
-	}
+	
 	
 	public FileConfiguration getMessageConfig() {
 		//System.out.println("asdf"+messages.getString("prefix.main"));
@@ -204,15 +199,6 @@ public class SettingsManager {
 		saveMessages();
 	}
 	
-	public void reloadChest() {
-		chest = YamlConfiguration.loadConfiguration(f5);
-		if(chest.getInt("version", 0) != CHEST_VERSION){
-			moveFile(f5);
-			loadFile("chest.yml");
-			reloadKits();
-		}
-	}
-
 
 
 
@@ -247,15 +233,6 @@ public class SettingsManager {
 	public void saveMessages() {
 		try {
 			messages.save(f4);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public void saveChest() {
-		try {
-			chest.save(f5);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
