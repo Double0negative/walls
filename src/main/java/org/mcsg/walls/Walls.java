@@ -19,7 +19,6 @@ import org.mcsg.walls.hooks.HookManager;
 import org.mcsg.walls.logging.LoggingManager;
 import org.mcsg.walls.logging.QueueManager;
 import org.mcsg.walls.stats.StatsManager;
-import org.mcsg.walls.util.ChestRatioStorage;
 import org.mcsg.walls.util.DatabaseManager;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
@@ -97,7 +96,6 @@ public class Walls extends JavaPlugin {
 				LobbyManager.getInstance().setup(p);
 			}
 
-			ChestRatioStorage.getInstance().setup();
 			HookManager.getInstance().setup();
 			pm.registerEvents(new PlaceEvent(), p);
 			pm.registerEvents(new BreakEvent(), p);

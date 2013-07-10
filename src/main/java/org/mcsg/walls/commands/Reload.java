@@ -6,8 +6,8 @@ import org.bukkit.plugin.Plugin;
 import org.mcsg.walls.Game;
 import org.mcsg.walls.GameManager;
 import org.mcsg.walls.MessageManager;
-import org.mcsg.walls.SettingsManager;
 import org.mcsg.walls.MessageManager.PrefixType;
+import org.mcsg.walls.SettingsManager;
 import org.mcsg.walls.logging.QueueManager;
 
 public class Reload implements SubCommand{
@@ -25,7 +25,7 @@ public class Reload implements SubCommand{
 
 			}
 			if(args[0].equalsIgnoreCase("settings")){
-				SettingsManager.getInstance().reloadChest();
+				//SettingsManager.getInstance().reloadChest();
 				SettingsManager.getInstance().reloadKits();
 				SettingsManager.getInstance().reloadMessages();
 				SettingsManager.getInstance().reloadSpawns();
