@@ -52,7 +52,7 @@ public class CommandHandler implements CommandExecutor {
 	private void loadCommands() {
 		commands.put("createarena", new CreateArena());
 		commands.put("join", new Join());
-		commands.put("addwall", new AddLobbyWall());
+		commands.put("addwall", new AddWall());
 		commands.put("setspawn", new SetSpawn());
 		commands.put("getcount", new ListArenas());
 		commands.put("disable", new Disable());
