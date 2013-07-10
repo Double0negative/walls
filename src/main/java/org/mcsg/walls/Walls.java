@@ -33,9 +33,9 @@ public class Walls extends JavaPlugin {
 	public static int config_version = 3;
 
 	public static List < String > auth = Arrays.asList(new String[] {
-			"Double0negative", "iMalo", "Medic0987", "alex_markey", "skitscape", "AntVenom", "YoshiGenius", "pimpinpsp", "WinryR", "Jazed2011",
-			"KiwiPantz", "blackracoon", "CuppingCakes", "4rr0ws", "Fawdz", "Timothy13", "rich91", "ModernPrestige", "Snowpool", "egoshk", 
-			"nickm140",  "chaseoes", "Oceangrass", "GrailMore", "iAngelic", "Lexonia", "ChaskyT", "Anon232"
+			"Double0negative", "iMalo",  "alex_markey", "skitscape", "AntVenom", "YoshiGenius", "pimpinpsp", 
+			 "CuppingCakes", "4rr0ws", "Fawdz",  "ModernPrestige", "Snowpool", "egoshk", 
+			"nickm140",  "chaseoes",  "GrailMore", "iAngelic", "Lexonia", "ChaskyT", "Anon232"
 	});
 
 	Walls p = this;
@@ -125,7 +125,7 @@ public class Walls extends JavaPlugin {
 	}
 
 	public void setCommands() {
-		getCommand("survivalgames").setExecutor(new CommandHandler(p));
+		getCommand("walls").setExecutor(new CommandHandler(p));
 	}
 
 
