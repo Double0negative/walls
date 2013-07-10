@@ -13,6 +13,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.mcsg.walls.MessageManager.PrefixType;
 import org.mcsg.walls.commands.AddLobbyWall;
+import org.mcsg.walls.commands.AddWall;
 import org.mcsg.walls.commands.CreateArena;
 import org.mcsg.walls.commands.DelArena;
 import org.mcsg.walls.commands.Disable;
