@@ -3,7 +3,9 @@ package org.mcsg.walls.logging;
 
 import java.util.HashMap;
 
+import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.Chest;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -17,6 +19,7 @@ import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.inventory.ItemStack;
 import org.mcsg.walls.Game;
 import org.mcsg.walls.GameManager;
 
@@ -227,12 +230,15 @@ public class LoggingManager implements  Listener{
 
 
 	public void logBlockDestoryed(Block b){
+		ItemStack[] stack  = null;
 		if(GameManager.getInstance().getBlockGameId(b.getLocation()) == -1)
 			return;
 		if( GameManager.getInstance().getGameMode(GameManager.getInstance().getBlockGameId(b.getLocation())) == Game.GameMode.DISABLED)
 			return ;
 		if(b.getTypeId() == 51)
 			return;
+		if(b.getType() == Material.CHEST)
+			stack = ((Chest)b).getBlockInventory().getContents();
 		QueueManager.getInstance().add(
 				new BlockData( 
 						GameManager.getInstance().getBlockGameId(b.getLocation()),
@@ -244,7 +250,7 @@ public class LoggingManager implements  Listener{
 						b.getX(),
 						b.getY(),
 						b.getZ(),
-						null)
+						stack)
 				);
 	}
 
