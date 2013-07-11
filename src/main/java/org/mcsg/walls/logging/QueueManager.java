@@ -11,6 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.block.Chest;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -176,11 +177,11 @@ public class QueueManager {
 						b.setTypeIdAndData(result.getPrevid(), result.getPrevdata(), false);
 						b.getState().update();
 
-						/*	if(result.getItems() != null){
+							if(result.getItems() != null){
 							Chest c = (Chest)b;
 							c.getBlockInventory().setContents(result.getItems());
 						}
-						 */
+						 
 
 						rb++;
 
