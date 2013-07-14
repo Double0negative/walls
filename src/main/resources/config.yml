@@ -51,32 +51,19 @@ cmdwhitelist:
 #the game in seconds.
 grace-period: 20
 
-#Controlls if chests should be restocked on the first
-#night. If set to true this will also have the side
-#effect of setting the world time to day at the start
-#of the game. This is only temporary until per-arena time
-#has been implemented.
-restock-chest: true
+#set the amount of time before the walls
+#drop in minutes
+time-before-drop: 30
 
-#Here you can control block placing and breaking. 
+#block place/break blacklist. Set blocks that
+#you dont want to be broken or placed
 block:
   place:
-    whitelist:
-    - 18
-    - 105
-    - 31
-    - 37
-    - 38
-    - 50
-    - 103
-    - 43
+    blacklist:
+    - 0
   break:
-    whitelist:
-    - 18
-    - 105
-    - 31
-    - 37
-    - 38
+    blacklist:
+    - 0
     - 50
     - 103
     - 43
