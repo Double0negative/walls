@@ -8,6 +8,7 @@ import org.bukkit.block.Chest;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockFadeEvent;
@@ -18,6 +19,7 @@ import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.mcsg.walls.Game;
 import org.mcsg.walls.GameManager;
@@ -133,7 +135,8 @@ public class LoggingManager implements Listener {
 
 
 	}
-
+	
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void blockChange(BlockPistonExtendEvent e) {
 		if (e.isCancelled())
 			return;
@@ -144,7 +147,19 @@ public class LoggingManager implements Listener {
 		i.put("BPISTION", i.get("BPISTION") + 1);
 
 	}
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void blockChange(PlayerInteractEvent e) {
+		if (e.isCancelled())
+			return;
+		if(e.getAction() != Action.RIGHT_CLICK_BLOCK)
+			return;
+		Block b = e.getClickedBlock();
+		if(b.getType() != Material.CHEST)
+			return;
+		logBlockDestoryed(b);
 
+	}
 
 	public void logBlockCreated(Block b) {
 		Walls.debug("Logging created: "+b+" ID: "+b.getTypeId());
