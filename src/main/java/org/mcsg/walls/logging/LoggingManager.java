@@ -158,7 +158,6 @@ public class LoggingManager implements Listener {
 		if(b.getType() != Material.CHEST)
 			return;
 		logBlockDestoryed(b);
-
 	}
 
 	public void logBlockCreated(Block b) {
