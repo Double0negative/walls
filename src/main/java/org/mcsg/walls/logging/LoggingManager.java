@@ -21,6 +21,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.mcsg.walls.Game;
 import org.mcsg.walls.GameManager;
+import org.mcsg.walls.Walls;
 
 public class LoggingManager implements Listener {
 	public static HashMap<String, Integer> i = new HashMap<String, Integer>();
@@ -146,6 +147,7 @@ public class LoggingManager implements Listener {
 
 
 	public void logBlockCreated(Block b) {
+		Walls.debug("Logging created: "+b+" ID: "+b.getTypeId());
 		if (GameManager.getInstance().getBlockGameId(b.getLocation()) == -1)
 			return;
 		if (GameManager.getInstance().getGameMode(
@@ -160,6 +162,7 @@ public class LoggingManager implements Listener {
 	}
 
 	public void logBlockDestoryed(Block b) {
+		Walls.debug("Logging destroyed: "+b+" ID: "+b.getTypeId());
 		ItemStack[] stack = null;
 		if (GameManager.getInstance().getBlockGameId(b.getLocation()) == -1)
 			return;
@@ -169,7 +172,7 @@ public class LoggingManager implements Listener {
 		if (b.getTypeId() == 51)
 			return;
 		if (b.getType() == Material.CHEST)
-			stack = ((Chest) b).getBlockInventory().getContents();
+			stack = ((Chest) b.getState()).getBlockInventory().getContents();
 		QueueManager.getInstance().add(
 				new BlockData(GameManager.getInstance().getBlockGameId(
 						b.getLocation()), b.getWorld().getName(),
@@ -178,3 +181,5 @@ public class LoggingManager implements Listener {
 	}
 
 }
+
+

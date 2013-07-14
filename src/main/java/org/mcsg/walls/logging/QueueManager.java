@@ -57,8 +57,8 @@ public class QueueManager {
 	public void rollback(final int id, final boolean shutdown){
 		loadSave(id);
 		if(!shutdown){
-		Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(),
-				new Rollback(id, shutdown));
+			Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(),
+					new Rollback(id, shutdown));
 		}
 		else{
 			new Rollback(id, shutdown).run();
@@ -167,7 +167,7 @@ public class QueueManager {
 				int a = data.size()-1;
 				int rb = 0;
 				while(a>=0 && (rb < 100 || shutdown)){
-					Walls.debug("Reseting "+a);
+				//	Walls.debug("Reseting "+a);
 					BlockData result = data.get(a);
 					if(result.getGameId() == game.getID()){
 
@@ -177,11 +177,12 @@ public class QueueManager {
 						b.setTypeIdAndData(result.getPrevid(), result.getPrevdata(), false);
 						b.getState().update();
 
-							if(result.getItems() != null){
-							Chest c = (Chest)b;
+						if(result.getItems() != null){
+							Walls.debug("rolling back chest");
+							Chest c = (Chest)b.getState();
 							c.getBlockInventory().setContents(result.getItems());
 						}
-						 
+
 
 						rb++;
 
