@@ -469,7 +469,7 @@ public class Game {
 			}
 			wallstime = SettingsManager.getInstance().getConfig().getInt("time-before-drop");
 
-			tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new checkwalls(), 1200L));
+			tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new checkwalls(), 0));
 		}
 
 		mode = GameMode.INGAME;
