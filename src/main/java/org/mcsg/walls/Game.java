@@ -989,14 +989,24 @@ public class Game {
 	public boolean isPlayerActive(Player player) {
 		return activePlayers.contains(player);
 	}
+	
 	public boolean isPlayerinactive(Player player) {
 		return inactivePlayers.contains(player);
 	}
+	
 	public boolean hasPlayer(Player p) {
 		return activePlayers.contains(p) || inactivePlayers.contains(p);
 	}
+	
 	public GameMode getMode() {
 		return mode;
+	}
+	
+	public boolean isOnWall(Location l){
+		if(wall.contains(l)){
+			return true;
+		}
+		else return false;
 	}
 
 	public synchronized void setRBPercent(double d) {
