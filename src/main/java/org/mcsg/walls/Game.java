@@ -110,6 +110,7 @@ public class Game {
 		arena = new Arena(min, max);
 
 		loadspawns();
+		loadWalls();
 
 		hookvars.put("arena", gameID + "");
 		hookvars.put("maxplayers", spawnCount + "");
