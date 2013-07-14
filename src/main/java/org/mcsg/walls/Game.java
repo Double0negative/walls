@@ -1041,13 +1041,14 @@ public class Game {
 		{
 			if (wallstime > 1) {
 				wallstime -= 1;
-				msgFall(PrefixType.INFO, ChatColor.AQUA +""+ wallstime + " minutes before the walls drop!");
+				if(wallstime < 5 || wallstime%5 == 0)
+					msgFall(PrefixType.INFO, "game.walltime", "t-"+wallstime);
 				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new checkwalls(), 1200L));
 			}
 			else {
 				wallstime--;
-				msgFall(PrefixType.INFO, ChatColor.AQUA + "The walls are falling!");
-				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new Game.dropwalls(), 1L));
+				msgFall(PrefixType.INFO, "game.wallsfalling");
+				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new dropwalls(), 1L));
 			}
 		}
 	}
