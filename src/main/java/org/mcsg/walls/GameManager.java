@@ -152,6 +152,15 @@ public class GameManager {
 			}
 		}
 	}
+	
+    public boolean isOnWall(Location l){
+    	for(Game g: getGames()){
+    		if(g.isOnWall(l)){
+    			return true;
+    		}
+    	}
+    	return false;
+    }
 
 	public boolean isInKitMenu(Player p){
 		return kitsel.contains(p);
