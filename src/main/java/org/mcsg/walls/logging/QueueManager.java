@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,7 +20,6 @@ import org.bukkit.entity.Player;
 import org.mcsg.walls.Game;
 import org.mcsg.walls.GameManager;
 import org.mcsg.walls.SettingsManager;
-import org.mcsg.walls.Walls;
 import org.mcsg.walls.Walls;
 
 
@@ -209,6 +209,7 @@ public class QueueManager {
 							Walls.debug("rolling back chest");
 							Chest c = (Chest)b.getState();
 							c.getBlockInventory().setContents(result.getItems());
+							Walls.debug(Arrays.toString(result.getItems()));
 						}
 
 

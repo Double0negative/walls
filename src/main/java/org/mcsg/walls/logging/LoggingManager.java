@@ -1,5 +1,6 @@
 package org.mcsg.walls.logging;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.bukkit.Material;
@@ -186,12 +187,22 @@ public class LoggingManager implements Listener {
 		if (b.getTypeId() == 51)
 			return;
 		if (b.getType() == Material.CHEST)
-			stack = ((Chest) b.getState()).getBlockInventory().getContents();
+			stack = copyItemStackArray(((Chest) b.getState()).getBlockInventory().getContents());
 		QueueManager.getInstance().add(
 				new BlockData(GameManager.getInstance().getBlockGameId(
 						b.getLocation()), b.getWorld().getName(),
 						b.getTypeId(), b.getData(), 0, (byte) 0, b.getX(), b
 								.getY(), b.getZ(), stack));
+		Walls.debug(Arrays.toString(stack));
+	}
+	
+	public ItemStack[] copyItemStackArray(ItemStack[] items){
+		ItemStack [] itemsnew = new ItemStack[items.length];
+		for(int a = 0; a < items.length; a++){
+			if(items[a]!=null)
+				itemsnew[a] = items[a].clone();
+		}
+		return itemsnew;
 	}
 
 }
