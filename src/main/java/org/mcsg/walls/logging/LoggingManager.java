@@ -20,6 +20,7 @@ import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.mcsg.walls.Game;
@@ -160,6 +161,8 @@ public class LoggingManager implements Listener {
 			return;
 		logBlockDestoryed(b);
 	}
+	
+
 
 	public void logBlockCreated(Block b) {
 		Walls.debug("Logging created: "+b+" ID: "+b.getTypeId());
