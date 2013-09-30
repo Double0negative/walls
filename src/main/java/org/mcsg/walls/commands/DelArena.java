@@ -37,8 +37,8 @@ public class DelArena implements SubCommand{
         }
         
         g.disable();
-        s.set("sg-system.arenas."+arena+".enabled", false);
-        s.set("sg-system.arenano", s.getInt("sg-system.arenano") - 1);
+        s.set("walls-system.arenas."+arena+".enabled", false);
+        s.set("walls-system.arenano", s.getInt("walls-system.arenano") - 1);
         //spawn.set("spawns."+arena, null);
         MessageManager.getInstance().sendFMessage(PrefixType.INFO, "info.deleted", player, "input-Arena");
         SettingsManager.getInstance().saveSystemConfig();

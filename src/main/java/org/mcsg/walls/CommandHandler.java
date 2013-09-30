@@ -125,7 +125,7 @@ public class CommandHandler implements CommandExecutor {
 		if (cmd1.getName().equalsIgnoreCase("walls")) {
 			if (args == null || args.length < 1) {
 				msgmgr.sendMessage(PrefixType.INFO, "Version " + pdfFile.getVersion() + " by Double0negative", player);
-				msgmgr.sendMessage(PrefixType.INFO, "Type /sg help <player | staff | admin> for command information", player);
+				msgmgr.sendMessage(PrefixType.INFO, "Type /walls help <player | staff | admin> for command information", player);
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("help")) {
