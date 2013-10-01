@@ -109,6 +109,7 @@ public class Walls extends JavaPlugin {
 			pm.registerEvents(new TeleportEvent(), p);
 			pm.registerEvents(LoggingManager.getInstance(), p);
 			pm.registerEvents(new SpectatorEvents(), p);
+			pm.registerEvents(new KeepLobbyLoadedEvent(), p);
 			//pm.registerEvents(new BandageUse(), p);
 			//pm.registerEvents(new KitEvents(), p);
 
