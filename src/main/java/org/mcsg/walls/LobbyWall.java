@@ -85,7 +85,7 @@ public class LobbyWall {
         Sign s1 = signs.get(1);
 
         //sign 0
-        s0.setLine(0, "[SurvivalGames]");
+        s0.setLine(0, "[Walls]");
         s0.setLine(1, "Click to join");
         s0.setLine(2, "Arena " + gameid);
 

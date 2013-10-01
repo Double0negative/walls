@@ -28,7 +28,7 @@ public class Vote implements SubCommand {
     
     @Override
     public String help(Player p) {
-        return "/sg vote - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.vote", "Votes to start the game");
+        return "/w vote - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.vote", "Votes to start the game");
     }
 
 	@Override

@@ -44,7 +44,7 @@ public class Flag implements SubCommand {
 
     @Override
     public String help(Player p) {
-        return "/sg flag <id> <flag> <value> - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.flag", "Modifies an arena-specific setting");
+        return "/w flag <id> <flag> <value> - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.flag", "Modifies an arena-specific setting");
     }
 
 	@Override

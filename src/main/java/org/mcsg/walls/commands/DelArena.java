@@ -49,7 +49,7 @@ public class DelArena implements SubCommand{
 
     @Override
     public String help (Player p) {
-        return "/sg delarena <id> - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.delarena", "Delete an arena");
+        return "/w delarena <id> - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.delarena", "Delete an arena");
     }
 
 	@Override

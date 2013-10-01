@@ -27,7 +27,7 @@ public class SetLobbyWall implements SubCommand{
 
     @Override
     public String help(Player p) {
-        return "/sg addwall <id> - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.addwall", "Add a lobby stats wall for Arena <id>");
+        return "/w addwall <id> - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.addwall", "Add a lobby stats wall for Arena <id>");
     }
 
 	@Override

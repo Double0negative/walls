@@ -36,7 +36,7 @@ public class ListArenas implements SubCommand{
     
     @Override
     public String help(Player p) {
-        return "/sg listarenas - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.listarenas", "List all available arenas");
+        return "/w listarenas - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.listarenas", "List all available arenas");
     }
 
 	@Override

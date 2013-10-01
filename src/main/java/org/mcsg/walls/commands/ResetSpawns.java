@@ -29,7 +29,7 @@ public class ResetSpawns implements SubCommand{
 
     @Override
     public String help(Player p) {
-        return "/sg resetspawns <id> - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.resetspawns", "Resets spawns for Arena <id>");
+        return "/w resetspawns <id> - " + SettingsManager.getInstance().getMessageConfig().getString("messages.help.resetspawns", "Resets spawns for Arena <id>");
     }
 
 	@Override
