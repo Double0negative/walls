@@ -1,6 +1,5 @@
 package org.mcsg.walls.commands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.mcsg.walls.GameManager;
 import org.mcsg.walls.MessageManager;

@@ -14,7 +14,7 @@ import org.mcsg.walls.util.MessageUtil;
 public class MessageManager {
 
 	public static MessageManager instance = new MessageManager();
-	public String pre = ChatColor.BLUE + "" + ChatColor.BOLD + "[" + ChatColor.GOLD + "" + ChatColor.BOLD + "SG" + ChatColor.BLUE + "" + ChatColor.BOLD + "] " + ChatColor.RESET;
+	public String pre = ChatColor.BLUE + "" + ChatColor.BOLD + "[" + ChatColor.GOLD + "" + ChatColor.BOLD + "WALLS" + ChatColor.BLUE + "" + ChatColor.BOLD + "] " + ChatColor.RESET;
 	private HashMap<PrefixType, String>prefix = new HashMap<PrefixType, String>();
 	public enum PrefixType {
 

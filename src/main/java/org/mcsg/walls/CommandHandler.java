@@ -106,7 +106,7 @@ public class CommandHandler implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd1, String commandLabel, String[] args) {
 		PluginDescriptionFile pdfFile = plugin.getDescription();
 		if (!(sender instanceof Player)) {
-			msgmgr.logMessage(PrefixType.WARNING, "Only in-game players can use SurvivalGames commands! ");
+			msgmgr.logMessage(PrefixType.WARNING, "Only in-game players can use Walls commands! ");
 			return true;
 		}
 
@@ -158,7 +158,7 @@ public class CommandHandler implements CommandExecutor {
 			args = (String[]) l.toArray(new String[0]);
 			if (!commands.containsKey(sub)) {
 				msgmgr.sendMessage(PrefixType.WARNING, "Command doesn't exist.", player);
-				msgmgr.sendMessage(PrefixType.INFO, "Type /sg help for command information", player);
+				msgmgr.sendMessage(PrefixType.INFO, "Type /w help for command information", player);
 				return true;
 			}
 			try {
@@ -166,7 +166,7 @@ public class CommandHandler implements CommandExecutor {
 			} catch (Exception e) {
 				e.printStackTrace();
 				msgmgr.sendFMessage(PrefixType.ERROR, "error.command", player, "command-["+sub+"] "+Arrays.toString(args));
-				msgmgr.sendMessage(PrefixType.INFO, "Type /sg help for command information", player);
+				msgmgr.sendMessage(PrefixType.INFO, "Type /w help for command information", player);
 			}
 			return true;
 		}
