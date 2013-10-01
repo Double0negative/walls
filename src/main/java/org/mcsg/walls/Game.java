@@ -3,9 +3,13 @@ package org.mcsg.walls;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.TreeMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -69,16 +73,16 @@ public class Game {
 	private int dropwallstid = 0;
 	private int wallstime = 0;
 
-	private ArrayList<Location> wall = new ArrayList<Location>();
+	private TreeMap<Integer, ArrayList<Location>> wall = new TreeMap<Integer, ArrayList<Location>>();
+	private HashSet<Location> wallcache = new HashSet<Location>(); //to make checking if something is on the wall faster
 	boolean f1 = false;
-	int w1 = 0;
 
 	public Game(int gameid) {
 		gameID = gameid;
 		reloadConfig();
 		setup();
 	}
-	
+
 	public void reloadConfig(){
 		config = SettingsManager.getInstance().getConfig();
 		system = SettingsManager.getInstance().getSystemConfig();
@@ -118,7 +122,7 @@ public class Game {
 
 		mode = GameMode.WAITING;
 	}
-	
+
 	public void loadWalls() {
 		FileConfiguration s = SettingsManager.getInstance().getSystemConfig();
 		int e = 0;
@@ -137,7 +141,7 @@ public class Game {
 					for (int a = Math.min(x3, x2); a <= Math.max(x3, x2); a++) {
 						for (int c = Math.min(z2, z3); c <= Math.max(z2, z3); c++) {
 							Location d = new Location(w, a, b, c);
-							wall.add(d);
+							addWallBlock(d);
 							e++;
 						}
 					}
@@ -146,6 +150,16 @@ public class Game {
 		}
 		System.out.println("Loaded " + e + " blocks into the wall");
 
+	}
+
+	public void addWallBlock(Location l){
+		ArrayList<Location> twall = wall.get(l.getBlockY());
+		if(twall == null){
+			twall = new ArrayList<Location>();
+		}
+		twall.add(l);
+		wallcache.add(l);
+		wall.put(l.getBlockY(), twall);
 	}
 
 	public void clearWalls(){
@@ -218,7 +232,7 @@ public class Game {
 		}
 
 		LobbyManager.getInstance().updateWall(gameID);
-		
+
 		MessageManager.getInstance().broadcastFMessage(PrefixType.INFO, "broadcast.gamewaiting", "arena-"+gameID);
 
 	}
@@ -340,7 +354,7 @@ public class Game {
 		int a = 0;
 		int b = 0;
 
-		
+
 		ArrayList<Kit>kits = GameManager.getInstance().getKits(p);
 		Walls.debug(kits+"");
 		if(kits == null || kits.size() == 0 || !SettingsManager.getInstance().getKits().getBoolean("enabled")){
@@ -598,14 +612,14 @@ public class Game {
 								"player-"+(Walls.auth.contains(p.getName()) ? ChatColor.DARK_RED + "" + ChatColor.BOLD : "") + p.getName(),
 								"killer-"+((killer != null)?(Walls.auth.contains(killer.getName()) ? ChatColor.DARK_RED + "" + ChatColor.BOLD : "") 
 										+ killer.getName():"Unknown"),
-								"item-"+((killer!=null)?ItemReader.getFriendlyItemName(killer.getItemInHand().getType()) : "Unknown Item"));
+										"item-"+((killer!=null)?ItemReader.getFriendlyItemName(killer.getItemInHand().getType()) : "Unknown Item"));
 						if(killer != null && p != null)
 							sm.addKill(killer, p, gameID);
 					}
 					else{
 						msgFall(PrefixType.INFO, "death."+p.getLastDamageCause().getEntityType(), "player-"
-					+(Walls.auth.contains(p.getName()) ? ChatColor.DARK_RED + "" + ChatColor.BOLD : "") 
-					+ p.getName(), "killer-"+p.getLastDamageCause().getEntityType());
+								+(Walls.auth.contains(p.getName()) ? ChatColor.DARK_RED + "" + ChatColor.BOLD : "") 
+								+ p.getName(), "killer-"+p.getLastDamageCause().getEntityType());
 					}
 					break;
 				default:
@@ -617,7 +631,7 @@ public class Game {
 				if (getActivePlayers() > 1) {
 					for (Player pl: getAllPlayers()) {
 						msgmgr.sendMessage(PrefixType.INFO, ChatColor.DARK_AQUA + "There are " + ChatColor.YELLOW + "" 
-					+ getActivePlayers() + ChatColor.DARK_AQUA + " players remaining!", pl);
+								+ getActivePlayers() + ChatColor.DARK_AQUA + " players remaining!", pl);
 					}
 				}
 			}
@@ -990,21 +1004,21 @@ public class Game {
 	public boolean isPlayerActive(Player player) {
 		return activePlayers.contains(player);
 	}
-	
+
 	public boolean isPlayerinactive(Player player) {
 		return inactivePlayers.contains(player);
 	}
-	
+
 	public boolean hasPlayer(Player p) {
 		return activePlayers.contains(p) || inactivePlayers.contains(p);
 	}
-	
+
 	public GameMode getMode() {
 		return mode;
 	}
-	
+
 	public boolean isOnWall(Location l){
-		if(wall.contains(l)){
+		if(wallcache.contains(l)){
 			return true;
 		}
 		else return false;
@@ -1035,7 +1049,7 @@ public class Game {
 			msgmgr.sendFMessage(type, msg, p, vars);
 		}
 	}
-	
+
 	class checkwalls implements Runnable {
 
 		public void run()
@@ -1049,34 +1063,37 @@ public class Game {
 			else {
 				wallstime--;
 				msgFall(PrefixType.INFO, "game.wallsfalling");
-				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new dropwalls(), 1L));
+				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new DropWall(), 1L));
 			}
 		}
 	}
 
-	class dropwalls implements Runnable
+	class DropWall implements Runnable
 	{
 
+		private int bottom;
+		private int current;
+
+		public DropWall(){
+			this(wall.lastKey());
+		}
+		
+		public DropWall(int i){
+			current = i;
+			bottom = wall.firstKey();
+		}
 
 		public void run()
 		{
-			int run = 0;
-			while ((w1 < wall.size()) && (run < 50)) {
-				run++;
-				Block d = ((Location)wall.get(w1)).getBlock();
-				LoggingManager.getInstance().logBlockDestoryed(d);
-				d.setTypeId(0);
-				d.getState().update();
-
-				w1 += 1;
+			for(Location loc : wall.get(current)){
+				Block b = loc.getBlock();
+				LoggingManager.getInstance().logBlockDestoryed(b);
+				b.setType(Material.AIR);
 			}
-			if (w1 >= wall.size()) {
-				f1 = true;
+			current--;
+			if (current < bottom) {
+				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new DropWall(current), 1L));
 			}
-
-			if ((!f1))
-				tasks.add(Bukkit.getScheduler().scheduleSyncDelayedTask(GameManager.getInstance().getPlugin(), new dropwalls(), 1L));
 		}
 	}
-
 }
